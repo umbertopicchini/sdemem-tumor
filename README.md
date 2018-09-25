@@ -52,10 +52,7 @@ For ODEMEM inference: acces folder ODEMEM-stan and run fitdata1.R (fits group 1)
 
 ** Info on the data-files
 
-The data file used for SDEMEM inference in Matlab is "tumorlong_nofollowup.txt", contained in the "utilities" folder. The first column report the day of the measurement.
-The second column is the ID for each mouse. The third column is the tumor volume [mm^3]. The fourth column is the group the mouse is assigned to.
-There are 5 groups and we only analysed mice in groups 1, 3 and 5. Also, as explained in the paper, some mice have been discarded from the analyses.  
-As mentioned in the paper, with the exception of mice in group 5 we have considered data from day 6 onward.    
+The data file used for SDEMEM inference in Matlab is "tumorlong_nofollowup.txt", contained in the "utilities" folder. The first column report the day of the measurement. The second column is the ID for each mouse. The third column is the tumor volume [mm^3]. The fourth column is the group the mouse is assigned to. There are 5 groups and we only analysed mice in groups 1, 3 and 5. Also, as explained in the paper, some mice have been discarded from the analyses, these being mice from group 1 having ID 11,13,15,17,18. As mentioned in the paper, with the exception of mice in group 5 we have considered data from day 6 onward.    
 
 Folder ODEMEM-stan contains also two datafiles (datagroup1 and datagroup3) which are subsets of tumorlong_nofollowup.txt, but also differ from tumorlong_nofollowup.txt in the following ways: (i) here the first column gives "normalised" days starting from day 6. However, we normalize those as described in section 5 of the paper, where times are divided by the largest observed time across all groups (example: the largest observed time is day 39; hence since we consider measurements from day 6, we have that for each subject the first reported time is 6/39 = 0.1539).  (ii) the second column gives the natural logarithm of the volumes (instead of the volumes). (iii) the third column is the mouse ID. (iv) Measurements are from day 6 onward (i.e. from time 6/39=0.1539).
 
