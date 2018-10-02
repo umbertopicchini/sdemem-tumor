@@ -29,7 +29,7 @@ Code is organised as follows:
 - folder ODEMEM-stan: produces exact Bayesian inference for ODEMEMs using Rstan, the R interface to Stan http://mc-stan.org/.
    
 
-** INSTALLATION:
+** INSTALLATION for Matlab files to run SDEMEMs inference
 
 - load the folder "utilities" into Matlab's search path.
 - the file mytruncgaussrandraw.m contains a call to a Matlab MEX-file normcdf_fex. Unless Windows is your OS, the file normcdf_fex.c should be compiled for your architecture (run "mex -setup" for more info).
@@ -44,6 +44,10 @@ Code is organised as follows:
  
      PHIl = normcdf((a-mu)/sigma);
      PHIr = normcdf((b-mu)/sigma);
+     
+** INSTALLATION for Stan/Rstan files to run ODEMEMs inference
+
+Stan and Rstan must be installed first. Please follow http://mc-stan.org/ for instructions.
 
 ** USAGE: 
 
