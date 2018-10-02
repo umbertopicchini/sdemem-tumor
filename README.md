@@ -11,7 +11,7 @@ we use the acronyms SDEMEMs and ODEMEMs to denote the two types of models above.
 
 The inference methods considered are:
 - Bayesian synthetic likelihoods (BSL) for SDEMEMs.
-- particle MCMC (PMCMC) using the auxiliary particle filter (APF), for SDEMEMs.
+- particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF), for SDEMEMs.
 - exact Bayesian inference for ODEMEMs.
 
 Code is organised as follows:
