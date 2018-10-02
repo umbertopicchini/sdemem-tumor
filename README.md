@@ -24,7 +24,7 @@ Code is organised as follows:
                   so files with the same name but in different subfolders might actually behave differently.
                   Therefore, as a safety measure, it is better to keep things this way.
 
-- folder PMCMC-APF: contains code for particle MCMC (PMCMC) using the auxiliary particle filter (APF). Same as above, there is some redundancy.
+- folder PMCMC-APF: contains code for particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF). Same as above, there is some redundancy.
 
 - folder ODEMEM-stan: produces exact Bayesian inference for ODEMEMs using Rstan, the R interface to Stan http://mc-stan.org/.
    
