@@ -1,4 +1,4 @@
-*SDE and ODE mixed-effects models for tumor growth in mice
+SDE and ODE mixed-effects models for tumor growth in mice
 
 This is accompanying code for Picchini, U. and Forman J.L. "Bayesian inference for stochastic differential equation mixed effects models of a tumor xenography study", arXiv:1607.02633
 
@@ -8,9 +8,9 @@ The code performs inference for a specific type of SDE mixed effects models (Mat
 
 The inference methods considered are:
 
-    Bayesian synthetic likelihoods (BSL) for SDEMEMs.
-    particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF), for SDEMEMs.
-    exact Bayesian inference for ODEMEMs.
+- Bayesian synthetic likelihoods (BSL) for SDEMEMs.
+- particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF), for SDEMEMs.
+- exact Bayesian inference for ODEMEMs.
 
 Code is organised as follows:
 
