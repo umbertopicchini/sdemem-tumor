@@ -69,7 +69,7 @@ numAPFsim = 5;   % number of particles required to compute the means in the firs
 THETAmatrix = pmcmc_sdmem_tumor_APF(problem,group,logsubdata,startstate,starttime,bigtheta,parmask,parbase,R_mcmc,step_rw,covariance_refresh,numparticles,numAPFsim);
 
 % posterior means reported in the paper are obtained with
-mean(exp(THETAmatrix(10000:end,:)));
+mean(exp(THETAmatrix(10000:end,:)))
 
 
 meantheta = mean(THETAmatrix(10000:end,:));

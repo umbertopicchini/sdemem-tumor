@@ -13,7 +13,7 @@ summaries = zeros(5,numsim);
 allsummaries = [];
 subjectsid = unique(subjectsvec);
 
-% summaries computed on each trajectory separately (i.e. individual
+% s_intra summaries computed on each trajectory separately (i.e. individual
 % summaries)
 for subject = subjectsid'   % NEAT! if I take the transpose of subjectsid (so now it's a row vector) I can iterate through it
     sublogvolume = logvolume(subjectsvec==subject,:); %extract data pertaining the current subject
@@ -27,7 +27,7 @@ for subject = subjectsid'   % NEAT! if I take the transpose of subjectsid (so no
     allsummaries = [allsummaries;summaries];
 end
 
-% augment with summaries computed on the whole "ensemble" 
+% augment with S_inter summaries computed on the whole "ensemble" 
 allsummaries = [allsummaries; (mad(logvolume(timesvec==timesvec(1),:),0,1))]; % computes MAD on the first time point between all trajectories
 allsummaries = [allsummaries; (mad(logvolume(timesvec==timesvec(2),:),0,1))]; % computes MAD on the third time point between all trajectories
 allsummaries = [allsummaries; (mad(logvolume(timesvec==timesvec(end),:),0,1))];

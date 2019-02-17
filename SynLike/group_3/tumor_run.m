@@ -76,8 +76,47 @@ meantheta = mean(THETAmatrix(10000:end,:)); % model parameters are always on log
 tumor_plotmodelsimulateSDEMEM(startstate,starttime,meantheta,logsubdata,overallmaxtime);
 
 %:::::::: posterior predictive checks ::::::::::::::::::::::::::::::::::
-postpredcheck = tumor_posteriorpredictivecheck(startstate,starttime,THETAmatrix(10000:end,:),logsubdata,numsim);
+postpredcheck = tumor_posteriorpredictivecheck(startstate,starttime,THETAmatrix(10000:end,:),logsubdata);
 % compare the above with the corresponding values in the observed summaries
 obssummaries = tumor_summaries(logsubdata(:,2),logsubdata(:,1),logsubdata(:,3))';
 
+% compare the simulated s_inter summaries to the observed ones
+% first inter-subjects summary
+figure
+subplot(2,2,1)
+hist(postpredcheck(:,41))
+vline(obssummaries(41))
+xlabel('s_{inter}^1')
+% second inter-subjects summary
+subplot(2,2,2)
+hist(postpredcheck(:,42))
+vline(obssummaries(42))
+xlabel('s_{inter}^2')
+% third inter-subjects summary
+subplot(2,2,3)
+hist(postpredcheck(:,43))
+vline(obssummaries(43))
+xlabel('s_{inter}^3')
 
+% Example: individual s_intra for subject 1 compared to the observed ones
+figure
+subplot(3,2,1)
+hist(postpredcheck(:,1))
+vline(obssummaries(1))
+xlabel('s^{intra}_1')
+subplot(3,2,2)
+hist(postpredcheck(:,2))
+vline(obssummaries(2))
+xlabel('s^{intra}_2')
+subplot(3,2,3)
+hist(postpredcheck(:,3))
+vline(obssummaries(3))
+xlabel('s^{intra}_3')
+subplot(3,2,4)
+hist(postpredcheck(:,4))
+vline(obssummaries(4))
+xlabel('s^{intra}_4')
+subplot(3,2,5)
+hist(postpredcheck(:,5))
+vline(obssummaries(5))
+xlabel('s^{intra}_5')

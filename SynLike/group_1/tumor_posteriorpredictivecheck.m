@@ -1,17 +1,16 @@
-function postpredcheck = tumor_posteriorpredictivecheck(startstate,starttime,THETAmatrix,alllogdata,numsim)
+function postpredcheck = tumor_posteriorpredictivecheck(startstate,starttime,THETAmatrix,alllogdata)
 
 % Posterior predictive checks when using the BSL inference method.
 % Warning: use only with data from group 1 and 3.
 %
-% It will simulate numposteriordraws times from the posterior
-% predictive distribution of the summaries used for synthetic likelihoods
-% anayses, where numposteriordraws = size(THETAmatrix,1) is the number of parameters drawn from the posterior (supplied after some burnin).
+% It will simulate numposteriordraws vectors of summaries, which can be used to approximate the
+% posterior predictive distrbution of said summaries, where numposteriordraws = size(THETAmatrix,1) 
+% is the number of parameters drawn from the posterior (supplied after some burnin).
 % Input: 
 %       - startstate: vector of initial volums v0, for each subject
 %       - starttime: starting time to initialize the simulations, e.g time=0
 %       - THETAmatrix: matrix of posterior draws (one for each row), obtained using some inference method, possibly discarding burnin draws 
 %       - alllogdata: supplied data, see tumor_run.m
-%       - numsim: number of simulated artificial datasets ued when computing the BSL approximation
 % Output:
 %       - postpredcheck: a numposteriordraws x (5*numsubjects+3) matrix. Each rows contain simulated synthetic summaries, corresponding to 
 %                         5 individual summaries for each subject, and additional 3 summaries that are common/shared
@@ -61,19 +60,19 @@ for subject = subjectsid'   % NEAT! if I take the transpose of subjectsid (so no
     v0 = startstate(count_subj);
     count_subj = count_subj+1;
     times = sublogdata(:,1);  % observational times for the given subject
-    timesrep = repmat(times,1,numsim); 
+    timesrep = repmat(times,1,1); 
     stepsizes = diff(timesrep,1,1);
-    alpharand = mytruncgaussrandraw([0,1,alpha,sigmaalpha],[1 numsim]);  %Umberto's custom made file
-    betarand = beta + sigmabeta*randn(1,numsim);
-    deltarand = delta + sigmadelta*randn(1,numsim);
+    alpharand = mytruncgaussrandraw([0,1,alpha,sigmaalpha],[1 1]);  %Umberto's custom made file
+    betarand = beta + sigmabeta*randn(1,1);
+    deltarand = delta + sigmadelta*randn(1,1);
     v0killed = alpharand.*v0;
     v0surv = (1-alpharand).*v0;
-    survived = zeros(n,numsim); % intialize matrix
+    survived = zeros(n,1); % intialize matrix
     killed = survived; % intialize matrix (to zeros)
     volume = survived; % intialize matrix (to zeros)
-    randn_std1 = randn(n,numsim);
-    randn_std2 = randn(n,numsim);
-    dW1 = zeros(n,numsim);             % preallocate arrays ...
+    randn_std1 = randn(n,1);
+    randn_std2 = randn(n,1);
+    dW1 = zeros(n,1);             % preallocate arrays ...
     dW2 = dW1;            
     dW1(1,:) = sqrt(timesrep(1,:)-starttime).*randn_std1(1,:);      
     dW2(1,:) = sqrt(timesrep(1,:)-starttime).*randn_std2(1,:);   
@@ -98,14 +97,15 @@ for subject = subjectsid'   % NEAT! if I take the transpose of subjectsid (so no
 
 end
 
-
-   lognoisyobs = log(allvolume) + sigmaerror*randn(size(allvolume,1),numsim);
+   % generate a single synthetic dataset as we are no more interested in
+   % performing synthetic likelihoods: in fact here we evaluate the data-generating
+   % process, conditionally on posterior draws, not the synthetic
+   % likelihood method itself
+   lognoisyobs = log(allvolume) + sigmaerror*randn(size(allvolume,1),1);
 
    simsummaries = tumor_summaries(lognoisyobs,alllogdata(:,1),alllogdata(:,3));  % simulated summaries
-   mean_simsummaries = mean(simsummaries,2);
-   cov_simsummaries = cov(simsummaries');
 
-   postpredcheck(check,:)  = mvnrnd(mean_simsummaries,cov_simsummaries);
+   postpredcheck(check,:)  = simsummaries';
 
 
 end
