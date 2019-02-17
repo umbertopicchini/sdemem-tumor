@@ -1,5 +1,3 @@
-SDE and ODE mixed-effects models for tumor growth in mice
-
 This is accompanying code for Picchini, U. and Forman J.L. "Bayesian inference for stochastic differential equation mixed effects models of a tumor xenography study", arXiv:1607.02633
 
 Contact Umberto Picchini for info. Currently at https://umbertopicchini.github.io/ or just search me on the internet using the usual tools.
