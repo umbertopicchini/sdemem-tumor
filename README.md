@@ -14,19 +14,19 @@ The inference methods considered are:
 
 Code is organised as follows:
 
-    folder "utilities": this folder should be loaded into Matlab's search path before running any script/run file. It also contain the data file "tumorlong_nofollowup.txt".
+- folder "utilities": this folder should be loaded into Matlab's search path before running any script/run file. It also contain the data file "tumorlong_nofollowup.txt".
 
-    folder Synlike: contains code using BSL for the three groups of subjects considered in the paper; it contains corresponding subfolders "group_x", where x=1,3,5. There is considerable redundancy of files in the three subfolders, meaning that copies of some specific files are unnecessarily copied in all the group_x folders. However some files having the same names are actually quite different, as for example the underlying model to fit group 5 is different from the one used for group 1 and 3, so files with the same name but in different subfolders might actually behave differently. Therefore, as a safety measure, it is better to keep things this way.
+- folder Synlike: contains code using BSL for the three groups of subjects considered in the paper; it contains corresponding subfolders "group_x", where x=1,3,5. There is considerable redundancy of files in the three subfolders, meaning that copies of some specific files are unnecessarily copied in all the group_x folders. However some files having the same names are actually quite different, as for example the underlying model to fit group 5 is different from the one used for group 1 and 3, so files with the same name but in different subfolders might actually behave differently. Therefore, as a safety measure, it is better to keep things this way.
 
-    folder PMCMC-APF: contains code for particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF). Same as above, there is some redundancy.
+- folder PMCMC-APF: contains code for particle marginal MCMC (PMCMC) using the auxiliary particle filter (APF). Same as above, there is some redundancy.
 
-    folder ODEMEM-stan: produces exact Bayesian inference for ODEMEMs using Rstan, the R interface to Stan http://mc-stan.org/.
+- folder ODEMEM-stan: produces exact Bayesian inference for ODEMEMs using Rstan, the R interface to Stan http://mc-stan.org/.
 
 ** INSTALLATION for Matlab files to run SDEMEMs inference
 
-    load the folder "utilities" into Matlab's search path.
+- load the folder "utilities" into Matlab's search path.
 
-    the file mytruncgaussrandraw.m contains a call to a Matlab MEX-file normcdf_fex. Unless Windows is your OS, the file normcdf_fex.c should be compiled for your architecture (run "mex -setup" for more info). If you are on a Windows machine you should be fine as I have included compiled versions for x32 and x64 architectures. The MEX file is used for computational efficiency. However if the compilation of the C-file normcdf_fex.c causes you headache, you can replace the lines 75-76 in mytruncgaussrandraw.m, that is
+- the file mytruncgaussrandraw.m contains a call to a Matlab MEX-file normcdf_fex. Unless Windows is your OS, the file normcdf_fex.c should be compiled for your architecture (run "mex -setup" for more info). If you are on a Windows machine you should be fine as I have included compiled versions for x32 and x64 architectures. The MEX file is used for computational efficiency. However if the compilation of the C-file normcdf_fex.c causes you headache, you can replace the lines 75-76 in mytruncgaussrandraw.m, that is
 
     PHIl = normcdf_fex((a-mu)/sigma);
     PHIr = normcdf_fex((b-mu)/sigma);
