@@ -1,4 +1,4 @@
-This is accompanying code for Picchini, U. and Forman J.L. "Bayesian inference for stochastic differential equation mixed effects models of a tumor xenography study", arXiv:1607.02633
+This is accompanying code for Picchini, U. and Forman J.L. "Bayesian inference for stochastic differential equation mixed effects models of a tumor xenography study", arXiv:1607.02633, forthcoming on the Journal of the Royal Statistical Society series C.
 
 Contact Umberto Picchini for info. Currently at https://umbertopicchini.github.io/ or just search me on the internet using the usual tools.
 
@@ -39,7 +39,11 @@ Stan and Rstan must be installed first. Please follow http://mc-stan.org/ for in
 
 ** USAGE:
 
-For SDEMEM inference: access one of the subfolders into the Synlike or PMCMC-APF folders and run the corresponding tumor_run file. For ODEMEM inference: acces folder ODEMEM-stan and run fitdata1.R (fits group 1) or fitdata3.R (fits group 3).
+- For SDEMEM inference: access one of the subfolders into the Synlike or PMCMC-APF folders and run the corresponding tumor_run file to obtain parameter inferences. For groups 1 and 3, the corresponding tumor_run files inside the
+  "Synlike" folder also produce posterior predictive checks (PPCs). PPCs are not available for PMCMC-APF. 
+ 
+- For ODEMEM inference: acces folder ODEMEM-stan and run fitdata1.R (fits group 1) or fitdata3.R (fits group 3) to obtain corresponding parameter inference.
+  Corresponding posterior predictive checks can be obtained by running predcheck1.R and predcheck3.R
 
 ** Info on the data-files
 
